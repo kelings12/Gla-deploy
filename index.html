@@ -3,77 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的导航页</title>
+    <title>寻找失踪儿童 - 公益导航页</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #3498db;
+            --light-color: #fff;
+            --dark-color: #333;
+            --background-color: #f9f9f9;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            background-image: url('http://files.unn.pp.ua/download/pictures%2Fbackground.jpg');
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            background-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
             margin: 0;
             padding: 20px;
-            color: #333;
+            color: var(--dark-color);
         }
         
         .header {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
+            color: var(--light-color);
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            color: var(--light-color);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            background-color: rgba(231, 76, 60, 0.8);
+            padding: 15px;
+            border-radius: 10px;
         }
         
         .search-container {
-            padding: 3rem;
+            padding: 2rem;
             width: 100%;
-            max-width: 500px;
-            margin: 0 auto 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
         
         .search-box {
             width: 100%;
-            padding: 15px 18px;
+            padding: 18px 25px;
             font-size: 20px;
             border: none;
-            border-radius: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             outline: none;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
         }
         
         .link-item {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 12px;
-            transition: all 0.2s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 15px 10px;
+            transition: all 0.3s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            height: 60px;
+            height: 90px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            border-left: 5px solid var(--primary-color);
         }
         
         .link-item:hover {
-            background-color: rgba(255, 255, 255, 0.85);
-            transform: translateY(-2px);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            background-color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            border-left: 5px solid var(--secondary-color);
         }
         
         .link-item a {
             text-decoration: none;
-            color: #333;
+            color: var(--dark-color);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -83,10 +115,16 @@
         }
         
         .link-icon {
-            width: 24px;
-            height: 24px;
-            margin-bottom: 8px;
+            width: 32px;
+            height: 32px;
+            margin-bottom: 10px;
             object-fit: contain;
+        }
+        
+        .fa-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
         
         .link-text {
@@ -94,208 +132,400 @@
             text-align: center;
             word-break: break-word;
             max-width: 100%;
+            font-weight: 600;
         }
-        .foot_marker {
-            position: fixed;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            width: 100%;
+        
+        .missing-children-section {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
             text-align: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
-            z-index: 999;
-            padding: 10px 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.3), transparent);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .missing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .missing-child {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .missing-child:hover {
+            transform: translateY(-5px);
+        }
+        
+        .child-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .child-info {
+            padding: 15px;
+        }
+        
+        .child-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+        }
+        
+        .child-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .emergency-contact {
+            background-color: rgba(231, 76, 60, 0.9);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .emergency-contact h3 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+        
+        .emergency-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .foot_marker {
+            text-align: center;
+            font-size: 14px;
+            color: var(--light-color);
+            padding: 20px 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
         }
 
         .foot_marker a {
-            color: rgba(255,255,255,0.8);
+            color: var(--light-color);
             text-decoration: none;
             transition: color 0.3s ease;
             padding: 5px 10px;
             border-radius: 15px;
+            background-color: rgba(231, 76, 60, 0.8);
         }
 
         .foot_marker a:hover {
-            color: #4388e0;
-        }        
+            color: #ffdd59;
+            background-color: rgba(231, 76, 60, 1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .missing-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-container {
+                padding: 1rem;
+            }
+            
+            .emergency-number {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1><i class="fas fa-heartbeat"></i> 寻找失踪儿童</h1>
+        <p>每一个孩子都是家庭的希望。如果您有失踪儿童的任何线索，请立即联系我们或当地警方。您的帮助可能改变一个家庭的命运。</p>
+    </div>
+    
     <div class="search-container">
-        <form action="https://www.google.com/search" method="get" target="_blank">
-            <input class="search-box" type="text" name="q" placeholder="Google 搜索...">
+        <form action="https://www.baidu.com/s" method="get" target="_blank">
+            <input class="search-box" type="text" name="wd" placeholder="输入失踪儿童姓名或特征进行搜索...">
+            <input type="hidden" name="tn" value="baidu">
         </form>
     </div>
     
+    <div class="missing-children-section">
+        <h2 class="section-title">近期失踪儿童信息</h2>
+        <div class="missing-grid">
+            <!-- 失踪儿童信息示例 -->
+            <div class="missing-child">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="失踪儿童" class="child-photo">
+                <div class="child-info">
+                    <h3>张小明，8岁</h3>
+                    <p><strong>失踪时间：</strong>2023年5月15日</p>
+                    <p><strong>失踪地点：</strong>北京市朝阳区</p>
+                    <p><strong>特征：</strong>身穿蓝色外套，左脸颊有痣</p>
+                </div>
+            </div>
+            
+            <div class="missing-child">
+                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="失踪儿童" class="child-photo">
+                <div class="child-info">
+                    <h3>李小花，6岁</h3>
+                    <p><strong>失踪时间：</strong>2023年4月22日</p>
+                    <p><strong>失踪地点：</strong>上海市浦东新区</p>
+                    <p><strong>特征：</strong>短发，身穿粉色裙子</p>
+                </div>
+            </div>
+            
+            <div class="missing-child">
+                <img src="https://images.unsplash.com/photo-1544717305-99670f9c28f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="失踪儿童" class="child-photo">
+                <div class="child-info">
+                    <h3>王浩然，10岁</h3>
+                    <p><strong>失踪时间：</strong>2023年6月3日</p>
+                    <p><strong>失踪地点：</strong>广州市天河区</p>
+                    <p><strong>特征：</strong>戴眼镜，身穿校服</p>
+                </div>
+            </div>
+            
+            <div class="missing-child">
+                <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="失踪儿童" class="child-photo">
+                <div class="child-info">
+                    <h3>刘思雨，7岁</h3>
+                    <p><strong>失踪时间：</strong>2023年5月30日</p>
+                    <p><strong>失踪地点：</strong>成都市锦江区</p>
+                    <p><strong>特征：</strong>马尾辫，身穿红色上衣</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="emergency-contact">
+            <h3><i class="fas fa-phone-alt"></i> 紧急联系</h3>
+            <p>如果您发现疑似失踪儿童或相关线索，请立即拨打：</p>
+            <div class="emergency-number">110 或 12309</div>
+            <p>公安部儿童失踪信息紧急发布平台 - "团圆"系统</p>
+        </div>
+    </div>
+    
     <div class="container">
-        <!-- 第一行 -->
+        <!-- 公益平台 -->
         <div class="link-item">
-            <a href="https://www.google.com" target="_blank">
-                <img class="link-icon" src="https://www.google.com/favicon.ico" alt="Google">
-                <span class="link-text">Google</span>
+            <a href="https://q.stock.sohu.com/cn/gg/tsxx/" target="_blank">
+                <i class="fas fa-child fa-icon"></i>
+                <span class="link-text">公安部团圆系统</span>
             </a>
         </div>
+        
+        <div class="link-item">
+            <a href="https://www.baobeihuijia.com/" target="_blank">
+                <i class="fas fa-home fa-icon"></i>
+                <span class="link-text">宝贝回家寻子网</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.ccafc.org.cn/" target="_blank">
+                <i class="fas fa-hands-helping fa-icon"></i>
+                <span class="link-text">中国儿童少年基金会</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.unicef.cn/" target="_blank">
+                <img class="link-icon" src="https://www.unicef.cn/sites/unicef.org.china/files/styles/media_large/public/unicefchina_logo_0.png?itok=9FJx_ZbR" alt="UNICEF">
+                <span class="link-text">联合国儿童基金会</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.mps.gov.cn/" target="_blank">
+                <i class="fas fa-shield-alt fa-icon"></i>
+                <span class="link-text">公安部官网</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://weibo.com/u/5012013151" target="_blank">
+                <i class="fab fa-weibo fa-icon"></i>
+                <span class="link-text">微博打拐</span>
+            </a>
+        </div>
+        
+        <!-- 信息查询平台 -->
         <div class="link-item">
             <a href="https://www.baidu.com" target="_blank">
                 <img class="link-icon" src="https://www.baidu.com/favicon.ico" alt="Baidu">
-                <span class="link-text">Baidu</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.youtube.com" target="_blank">
-                <img class="link-icon" src="https://www.youtube.com/favicon.ico" alt="YouTube">
-                <span class="link-text">Youtube</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://mail.google.com/mail/u/0/" target="_blank">
-                <img class="link-icon" src="https://mail.google.com/favicon.ico" alt="Gmail">
-                <span class="link-text">Gmail</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://github.com" target="_blank">
-                <img class="link-icon" src="https://github.com/favicon.ico" alt="GitHub">
-                <span class="link-text">GitHub</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://ip.sb" target="_blank">
-                <img class="link-icon" src="https://ip.sb/favicon.ico" alt="IP SB">
-                <span class="link-text">ip.sb</span>
-            </a>
-        </div>
-        
-        <!-- 第二行 -->
-        <div class="link-item">
-            <a href="https://dash.cloudflare.com" target="_blank">
-                <img class="link-icon" src="https://www.cloudflare.com/favicon.ico" alt="Cloudflare">
-                <span class="link-text">Cloudflare</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://chat.openai.com" target="_blank">
-                <img class="link-icon" src="https://chat.openai.com/favicon.ico" alt="ChatGPT">
-                <span class="link-text">Chatgpt</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://huggingface.co" target="_blank">
-                <img class="link-icon" src="https://huggingface.co/favicon.ico" alt="Hugging Face">
-                <span class="link-text">Huggingface</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.itdog.cn" target="_blank">
-                <i class="fas fa-network-wired link-icon"></i>
-                <span class="link-text">ITDOG - 在线ping</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://ping0.cc" target="_blank">
-                <i class="fas fa-database link-icon"></i>
-                <span class="link-text">Ping0</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="#" target="_blank">
-                <i class="fas fa-fingerprint link-icon"></i>
-                <span class="link-text">浏览器指纹</span>
-            </a>
-        </div>
-        
-        <!-- 第三行 -->
-        <div class="link-item">
-            <a href="https://ssss.nyc.mn" target="_blank">
-                <i class="fas fa-tachometer-alt link-icon"></i>
-                <span class="link-text">nezha面板</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://hoppscotch.io" target="_blank">
-                <img class="link-icon" src="https://discord.com/favicon.ico" alt="Discord">
-                <span class="link-text">Api测试</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://who.cx" target="_blank">
-                <i class="fas fa-globe link-icon"></i>
-                <span class="link-text">who.cx</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.domcomp.com" target="_blank">
-                <i class="fas fa-tags link-icon"></i>
-                <span class="link-text">域名比价</span>
+                <span class="link-text">百度搜索</span>
             </a>
         </div>
         
         <div class="link-item">
-            <a href="https://www.nodeseek.com" target="_blank">
-                <i class="fas fa-server link-icon"></i>
-                <span class="link-text">NodeSeek</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://linux.do" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">Linux do</span>
+            <a href="https://www.google.com" target="_blank">
+                <img class="link-icon" src="https://www.google.com/favicon.ico" alt="Google">
+                <span class="link-text">Google搜索</span>
             </a>
         </div>
         
-        <!-- 第四行 -->
         <div class="link-item">
-            <a href="https://music.gvrander.eu.org" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">在线音乐</span>
-            </a>           
+            <a href="https://www.people.com.cn/" target="_blank">
+                <i class="fas fa-newspaper fa-icon"></i>
+                <span class="link-text">人民日报</span>
+            </a>
         </div>
+        
         <div class="link-item">
-            <a href="https://www.freereceivesms.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">免费接码</span>
-            </a> 
+            <a href="https://www.xinhuanet.com/" target="_blank">
+                <i class="fas fa-broadcast-tower fa-icon"></i>
+                <span class="link-text">新华网</span>
+            </a>
         </div>
+        
+        <!-- 帮助与支持 -->
         <div class="link-item">
-            <a href="https://sublink.eooce.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">订阅转换</span>
-            </a> 
+            <a href="https://www.zhiyuan.gov.cn/" target="_blank">
+                <i class="fas fa-hand-holding-heart fa-icon"></i>
+                <span class="link-text">志愿服务平台</span>
+            </a>
         </div>
+        
         <div class="link-item">
-            <a href="https://ssh.eooce.com" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">webssh</span>
-            </a> 
+            <a href="https://www.12355.org/" target="_blank">
+                <i class="fas fa-phone-volume fa-icon"></i>
+                <span class="link-text">青少年服务台</span>
+            </a>
         </div>
+        
+        <!-- 实用工具 -->
         <div class="link-item">
-            <a href="https://filebox.nnuu.nyc.mn" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">文件快递柜</span>
-            </a> 
+            <a href="https://map.baidu.com/" target="_blank">
+                <i class="fas fa-map-marked-alt fa-icon"></i>
+                <span class="link-text">地图查询</span>
+            </a>
         </div>
+        
         <div class="link-item">
-            <a href="https://address.nnuu.nyc.mn" target="_blank">
-                <i class="fab fa-linux link-icon"></i>
-                <span class="link-text">真实地址生成</span>
-            </a> 
+            <a href="https://www.12306.cn/" target="_blank">
+                <i class="fas fa-train fa-icon"></i>
+                <span class="link-text">铁路查询</span>
+            </a>
         </div>
+        
+        <div class="link-item">
+            <a href="https://www.ctrip.com/" target="_blank">
+                <i class="fas fa-plane fa-icon"></i>
+                <span class="link-text">交通出行</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.weather.com.cn/" target="_blank">
+                <i class="fas fa-cloud-sun fa-icon"></i>
+                <span class="link-text">天气查询</span>
+            </a>
+        </div>
+        
+        <!-- 社交媒体 -->
+        <div class="link-item">
+            <a href="https://weixin.qq.com/" target="_blank">
+                <i class="fab fa-weixin fa-icon"></i>
+                <span class="link-text">微信</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://weibo.com" target="_blank">
+                <i class="fab fa-weibo fa-icon"></i>
+                <span class="link-text">微博</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.douyin.com/" target="_blank">
+                <i class="fab fa-tiktok fa-icon"></i>
+                <span class="link-text">抖音</span>
+            </a>
+        </div>
+        
+        <div class="link-item">
+            <a href="https://www.zhihu.com/" target="_blank">
+                <i class="fab fa-zhihu fa-icon"></i>
+                <span class="link-text">知乎</span>
+            </a>
+        </div>
+    </div>
 
-        <!-- 版权 -->
-        <div class="foot_marker">
-        <a href="https://github.com/eooce" target="_blank">Powered by eooce</a>
+    <div class="foot_marker">
+        <a href="https://www.baobeihuijia.com/" target="_blank">宝贝回家</a> | 
+        <a href="https://q.stock.sohu.com/cn/gg/tsxx/" target="_blank">公安部团圆系统</a> | 
+        <a href="https://www.mps.gov.cn/" target="_blank">公安部官网</a> | 
+        <a href="tel:110">报警电话: 110</a>
+        <p>本页面旨在为寻找失踪儿童提供便利，所有信息均来自公开渠道 | 愿每个孩子都能平安回家</p>
     </div>
 
     <script>
-        document.querySelectorAll('.link-item:not(.empty)').forEach(item => {
-            const icon = item.querySelector('img.link-icon');
-            if (icon) {
-                icon.onerror = function() {
-                    this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40NzcgMiAyIDYuNDc3IDIgMTJzNC40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTBTMTcuNTIzIDIgMTIgMnptMCAyYzQuNDE4IDAgOCAzLjU4MiA4IDhzLTMuNTgyIDgtOCA4LTgtMy41ODItOC04IDMuNTgyLTggOC04eiIgZmlsbD0iIzMzMyIvPjwvc3ZnPg==';
-                }
+        // 设置所有外部链接在新窗口打开
+        document.querySelectorAll('a[href^="http"]').forEach(link => {
+            if (!link.href.includes(window.location.hostname)) {
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
             }
+        });
+        
+        // 图片加载失败时使用备用图标
+        document.querySelectorAll('.link-item img.link-icon').forEach(img => {
+            img.onerror = function() {
+                this.src = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJDNi40NzcgMiAyIDYuNDc3IDIgMTJzNC40NzcgMTAgMTAgMTAgMTAtNC40NzcgMTAtMTBTMTcuNTIzIDIgMTIgMnptMCAyYzQuNDE4IDAgOCAzLjU4MiA4IDhzLTMuNTgyIDgtOCA4LTgtMy41ODItOC04IDMuNTgyLTggOC04eiIgZmlsbD0iI2U3NGMzYyIvPjwvc3ZnPg==';
+            }
+        });
+        
+        // 搜索框提示信息轮换
+        const searchPlaceholders = [
+            "输入失踪儿童姓名或特征进行搜索...",
+            "输入失踪地点进行搜索...",
+            "输入失踪日期进行搜索...",
+            "输入儿童特征进行搜索..."
+        ];
+        
+        let placeholderIndex = 0;
+        const searchBox = document.querySelector('.search-box');
+        
+        if (searchBox) {
+            setInterval(() => {
+                placeholderIndex = (placeholderIndex + 1) % searchPlaceholders.length;
+                searchBox.placeholder = searchPlaceholders[placeholderIndex];
+            }, 3000);
+        }
+        
+        // 失踪儿童卡片悬停效果增强
+        document.querySelectorAll('.missing-child').forEach(child => {
+            child.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 8px 20px rgba(231, 76, 60, 0.3)';
+            });
+            
+            child.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 3px 8px rgba(0, 0, 0, 0.1)';
+            });
         });
     </script>
 </body>
